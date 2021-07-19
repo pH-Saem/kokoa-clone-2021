@@ -38,3 +38,8 @@
     font-size: 32px;
     color:white
 }
+
+.fa-exclamation-triangle{
+    color:tomato;
+    margin-left: 5px;
+}

@@ -1,6 +1,6 @@
 #chat-screen{
     background-color: #abc1d1;
-    height: 11000vh;
+    height: 500vh;
 }
 
 #chat-screen .alt-header,
@@ -20,6 +20,17 @@
     z-index: 2;
 }
 
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to{
+        opacity: 1;
+        transform: none;
+    }
+}
+
 .main-chat{
     margin-top: 120px;
     display: flex;
@@ -34,12 +45,36 @@
     font-size: 14px;
     border-radius: 25px;
     margin-bottom: 25px;
+    animation: fadeIn .8s linear;
+}
+
+@keyframes fadeIn--left{
+    from{
+        transform: translateX(-15px);
+    }
+    to{
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeIn--right{
+    from{
+        transform: translateX(15px);
+    }
+    to{
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .message-row{
     width: 100%;
     display: flex;
+    opacity: 0;
     margin-bottom: 25px;
+    animation: fadeIn--left .8s linear forwards;
+    animation-delay: .3s;
 }
 
 .message-row img{
@@ -76,6 +111,8 @@
 
 .message-row--own{
     justify-content: flex-end;
+    animation: fadeIn--right .8s linear forwards;
+    animation-delay: .3s;
 }
 
 .message-row--own .message__bubble{
@@ -100,6 +137,7 @@
     padding:5px 25px;
     align-items: center;
     box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
 }
 .reply .reply__column:first-child{
     width: 10%;
@@ -114,6 +152,7 @@
     border:var(--main-border);
     border-radius: 20px;
     padding: 12px;
+    transition: all .3s ease-in-out;
 }
 
 .reply__column:last-child > i,
@@ -147,4 +186,26 @@
 
 .reply i{
     opacity: 0.5;
+}
+
+.reply .reply__column:first-child,
+.reply .fa-surprise,
+.reply button{
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-surprise,
+.reply:focus-within button{
+    opacity: 0;
+}
+
+.reply input:focus{
+    width: 98vw;
+    transform: translateX(-13%) translateY(-80px);
+}
+
+.reply:focus-within{
+    transform: translateY(80px);
 }
